@@ -120,6 +120,7 @@ SECRET_KEY=your_jwt_secret_key
 ---
 
 ▶️ Installation & Setup
+---
 1️⃣ Clone the Repository
 git clone https://github.com/your-username/smart-todo-api.git
 cd smart-todo-api
