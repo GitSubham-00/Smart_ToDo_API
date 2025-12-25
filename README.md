@@ -122,27 +122,37 @@ SECRET_KEY=your_jwt_secret_key
 ▶️ Installation & Setup
 ---
 1️⃣ Clone the Repository
+```text
 git clone https://github.com/your-username/smart-todo-api.git
 cd smart-todo-api
+```
 
 2️⃣ Create Virtual Environment
+```text
 python -m venv venv
 
 
 Activate it:
 
 venv\Scripts\activate
+```
 
 3️⃣ Install Dependencies
+
+```text
 pip install -r requirements.txt
+```
 
 4️⃣ Run the Application
+
+```text
 uvicorn app.main:app --reload
 
 
 Server will run at:
 
 http://127.0.0.1:8000
+```
 
 📂 Project Structure
 
