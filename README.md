@@ -115,6 +115,7 @@ Create a `.env` file in the project root (do not commit it):
 ```env
 MONGO_URI=your_mongodb_connection_string
 SECRET_KEY=your_jwt_secret_key
+```
 
 ---
 
@@ -143,6 +144,8 @@ Server will run at:
 http://127.0.0.1:8000
 
 📂 Project Structure
+
+```text
 smart-todo-api/
 │
 ├── app/
@@ -170,6 +173,8 @@ smart-todo-api/
 ├── requirements.txt
 ├── .env (not committed)
 └── README.md
+
+```
 
 🔌 Assignment Requirements Fulfilled
 
