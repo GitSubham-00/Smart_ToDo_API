@@ -192,26 +192,30 @@ smart-todo-api/
 
 ✔ GitHub-ready project structure
 
+---
+
 ⭐ Final Note (For Recruiters)
 
-This project demonstrates:
+- This project demonstrates:
 
-Clean backend architecture
+- Clean backend architecture
 
-RESTful API design
+- RESTful API design
 
-Authentication and authorization using JWT
+- Authentication and authorization using JWT
 
-Secure user data handling
+- Secure user data handling
 
-Real-world task management workflow
+- Real-world task management workflow
 
-Production-ready documentation using Swagger
+- Production-ready documentation using Swagger
+
+---
 
 👨‍💻 Author
 
 Subham Maity
-Entry-Level Python Backend Developer
+
 
 🔗 GitHub: https://github.com/GitSubham-00
 
