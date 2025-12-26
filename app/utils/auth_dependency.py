@@ -1,23 +1,27 @@
-from fastapi import Depends, HTTPException, status
-from fastapi.security import OAuth2PasswordBearer
-from jose import JWTError, jwt
-from app.config import SECRET_KEY, ALGORITHM
+from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi.security import OAuth2PasswordRequestForm
+from app.utils.jwt_handler import create_access_token
+from app.database import db
+from passlib.context import CryptContext
 
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/auth/login")
+router = APIRouter(prefix="/auth", tags=["Authentication"])
 
+pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+users_collection = db["users"]
 
-def get_current_user(token: str = Depends(oauth2_scheme)) -> str:
-    credentials_exception = HTTPException(
-        status_code=status.HTTP_401_UNAUTHORIZED,
-        detail="Could not validate credentials",
-        headers={"WWW-Authenticate": "Bearer"},
-    )
+@router.post("/login")
+def login(form_data: OAuth2PasswordRequestForm = Depends()):
+    user = users_collection.find_one({"email": form_data.username})
 
-    try:
-        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
-        email: str | None = payload.get("sub")
-        if email is None:
-            raise credentials_exception
-        return email
-    except JWTError:
-        raise credentials_exception
+    if not user:
+        raise HTTPException(status_code=401, detail="Invalid credentials")
+
+    if not pwd_context.verify(form_data.password, user["password"]):
+        raise HTTPException(status_code=401, detail="Invalid credentials")
+
+    token = create_access_token({"sub": user["email"]})
+
+    return {
+        "access_token": token,
+        "token_type": "bearer"
+    }
