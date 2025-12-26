@@ -1,25 +1,29 @@
-from fastapi import Depends, HTTPException, status
-from fastapi.security import OAuth2PasswordBearer
-from jose import jwt, JWTError
-from app.utils.jwt_handler import SECRET_KEY, ALGORITHM
+from fastapi import APIRouter, HTTPException, status, Depends
+from fastapi.security import OAuth2PasswordRequestForm
+from app.database import db
+from app.utils.password_hash import verify_password
+from app.utils.jwt_handler import create_access_token
 
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/auth/login")
+router = APIRouter(prefix="/auth", tags=["Authentication"])
 
-def get_current_user(token: str = Depends(oauth2_scheme)):
-    try:
-        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
-        email: str = payload.get("sub")
+users_collection = db["users"]
 
-        if email is None:
-            raise HTTPException(
-                status_code=status.HTTP_401_UNAUTHORIZED,
-                detail="Invalid authentication token"
-            )
 
-        return email
+@router.post("/login")
+def login(form_data: OAuth2PasswordRequestForm = Depends()):
+    user = users_collection.find_one({"email": form_data.username})
 
-    except JWTError:
+    if not user or not verify_password(form_data.password, user["hashed_password"]):
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Invalid or expired token"
+            detail="Invalid email or password"
         )
+
+    access_token = create_access_token(
+        data={"sub": user["email"]}
+    )
+
+    return {
+        "access_token": access_token,
+        "token_type": "bearer"
+    }
