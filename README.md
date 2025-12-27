@@ -249,52 +249,37 @@ smart-todo-api/
 
 ### 🔌 Assignment Requirements Fulfilled
 
-✔ REST backend using Python (FastAPI)
-
-✔ JWT-based authentication
-
-✔ OAuth2 password flow
-
-✔ NoSQL database (MongoDB)
-
-✔ Secure password handling
-
-✔ CRUD operations
-
-✔ Swagger documentation
-
-✔ Cloud deployment
-
-✔ Production-ready API
+- REST backend using Python (FastAPI)
+- JWT-based authentication
+- OAuth2 password flow
+- NoSQL database (MongoDB)
+- Secure password handling
+- CRUD operations
+- Swagger documentation
+- Cloud deployment
+- Production-ready API
 
 
 ---
 
-⭐ Final Note (For Recruiters)
-
-- This project demonstrates:
-
+## Final Note (For Recruiters)
+ This project demonstrates:
 - Clean backend architecture
-
 - RESTful API design
-
 - Authentication and authorization using JWT
-
 - Secure user data handling
-
 - Real-world task management workflow
-
 - Production-ready documentation using Swagger
 
 ---
 
-👨‍💻 Author
+## 👨‍💻 Author
 
-Subham Maity
+**Subham Maity**
 
 
-🔗 GitHub: https://github.com/GitSubham-00
+🔗 **GitHub**: https://github.com/GitSubham-00
 
-🔗 LinkedIn: https://linkedin.com/in/subhammaity
+🔗 **LinkedIn**: https://linkedin.com/in/subhammaity
 
-⭐ If you found this project useful, feel free to star the repository!
+If you found this project useful, feel free to star the repository!
